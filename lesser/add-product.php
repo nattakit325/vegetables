@@ -1,4 +1,21 @@
+<?php
+	session_start();
+	if($_SESSION['username'] == "")
+	{
+		echo "Please Login!";
+		exit();
+	}
+	
+	include "connect.php";
 
+	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
+	$SQL = "SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name ";
+	$Query = mysqli_query($objCon,$SQL);
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -89,7 +106,7 @@
     <div class="form-group">
       <input type="password" class="form-control" name="pwd" placeholder="Password">
     </div>
-    <input type="submit" class="btn btn-success" id="pwd" placeholder="Password" value="เข้าสู่ระบบ">
+    <input type="submit" class="btn btn-success" placeholder="Password" value="เข้าสู่ระบบ">
   </form>
         </center>
           
@@ -109,139 +126,78 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						
-						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
+                        <?php if($_SESSION['username'] != "") { ?>
+						    <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
+						<?php } ?>
+						<?php if($_SESSION['username'] == "") { ?>
+						    <li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
+						<?php } ?>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-	<br>
-	<br>
-	<div id="fh5co-featured-section">
-		<div class="container">
-			<div class="row">
-				
-				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
-						<div class="desc">
-							<h3>ชื้อสินค้า</h3>
-							<span>Buy</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
-						<div class="desc">
-							<h3>ลงประกาศขายสินค้า</h3>
-							<span>Sell</span>
-						</div>
-					</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="fh5co-services-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Awesome Services</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 services-inner text-center">
-					<span><i class="sl-icon-graph"></i></span>
-					<h3>Finance Dashboard</h3>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-				<div class="col-md-4 services-inner text-center">
-					<span><i class="sl-icon-heart"></i></span>
-					<h3>Made with Love</h3>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-				<div class="col-md-4 services-inner text-center">
-					<span><i class="sl-icon-key"></i></span>
-					<h3>Help &amp; Support</h3>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-
-			</div>
-		</div>
-	</div>
+	
 	<div id="fh5co-blog-section" class="fh5co-grey-bg-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Recent Blog</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#"><img class="img-responsive" src="images/image_4.jpg" alt="Blog"></a>
-						<div class="desc">
-							<h3><a href="#">New iPhone 6 Released</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#"><img class="img-responsive" src="images/image_5.jpg" alt="Blog"></a>
-						<div class="desc">
-							<h3><a href="#">Start your day with a beautiful appearance</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#"><img class="img-responsive" src="images/image_6.jpg" alt="Blog"></a>
-						<div class="desc">
-							<h3><a href="#">Bookmarksgrove right</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="fh5co-client-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Happy Clients</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 text-center">
-					<div class="testimony">
-						<span class="quote"><i class="icon-quote-right"></i></span>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<span>Athan Smith, via <a href="#" class="icon-twitter twitter-color"></a></span>
-						</blockquote>
-					</div>
-				</div>
-				<div class="col-md-6 text-center">
-					<div class="testimony">
-						<span class="quote"><i class="icon-quote-right"></i></span>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<span>Athan Smith, via <a href="#" class="icon-google-plus googleplus-color"></a></span>
-						</blockquote>
-					</div>
+				<div class="col-md-6 col-md-offset-3 fh5co-heading">
+                <form action="process-add-product.php" method="post" enctype="multipart/form-data">
+							<div class="row form-group">
+								<div class="col-md-12">
+									<label for="fname">ชื่อสินค้า</label>
+									<input type="text" name="na" class="form-control">
+								</div>
+								
+                            </div>
+                            <div class="row form-group">
+								<div class="col-md-12">
+									<label for="fname">รายละเอียด</label>
+									<input type="text" name="am" class="form-control">
+								</div>
+								
+                            </div>
+                            <div class="row form-group">
+								<div class="col-md-6">
+									<label for="fname">ชนิด</label>
+									<input type="text"name="pr" class="form-control">
+								</div>
+								<div class="col-md-6">
+									<label for="email">ประเภท</label>
+									<input type="number" name="day" class="form-control">
+								</div>
+                            </div>
+                            <div class="row form-group">
+								<div class="col-md-6">
+									<label for="email">รูป</label>
+									<input type="file" name="filUpload" class="form-control">
+								</div>
+								<div class="col-md-6">
+									<label for="fname">จำนวน</label>
+									<input type="number" name="amo" class="form-control">
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-6">
+									<label for="fname">ราคา</label>
+									<input type="number" name="pri" class="form-control">
+								</div>
+								<div class="col-md-6">
+									<label for="fname">เวลาที่ลง</label>
+									<input type="date" name="date" class="form-control">
+								</div>
+								
+                            </div>
+							<div class="form-group">
+								<input type="submit" value="ยืนยัน" name="submit" class="btn btn-primary">
+							</div>
+
+						</form>
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+    
 	
 	<footer id="fh5co-footer" role="contentinfo">
 	

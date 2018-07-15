@@ -1,4 +1,19 @@
+<?php
+	session_start();
+	include "connect.php";
 
+	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
+	$SQL = "SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name ";
+	$Query = mysqli_query($objCon,$SQL);
+
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
+    $query=mysqli_query($objCon,$sql);
+    $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -73,32 +88,31 @@
 	</head>
 	<body>
 
-		<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <center><h4 class="modal-title">กรุณาเข้าสู่ระบบ</h4></center>
-        </div>
-        <div class="modal-body">
-          <center>
-          <form action="check_login.php" method="POST">
-    <div class="form-group">
-      <input type="text" class="form-control" name="usr" placeholder="Username">
-    </div>
-    <div class="form-group">
-      <input type="password" class="form-control" name="pwd" placeholder="Password">
-    </div>
-    <input type="submit" class="btn btn-success" id="pwd" placeholder="Password" value="เข้าสู่ระบบ">
-  </form>
-        </center>
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-        </div>
-      </div>
-    </div>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<center><h4 class="modal-title">กรุณาเข้าสู่ระบบ</h4></center>
+				</div>
+				<div class="modal-body">
+					<center>
+						<form action="check_login.php" method="POST">
+							<div class="form-group">
+							<input type="text" class="form-control" name="usr" placeholder="Username">
+							</div>
+							<div class="form-group">
+							<input type="password" class="form-control" name="pwd" placeholder="Password">
+							</div>
+							<input type="submit" class="btn btn-success" placeholder="Password" value="เข้าสู่ระบบ">
+						</form>
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+				</div>
+			</div>
+		</div>
   </div>
 	
 	
@@ -109,8 +123,13 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						
+						<?php if($_SESSION['username'] != "") { ?>
+						<li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
+						<li><a href="logout.php">ออกจากระบบ</a></li>
+						<?php } ?>
+						<?php if($_SESSION['username'] == "") { ?>
 						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
+						<?php } ?>
 					</ul>
 				</nav>
 			</div>
@@ -123,7 +142,7 @@
 			<div class="row">
 				
 				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
+					<a href="buy-product.php" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
 						<div class="desc">
 							<h3>ชื้อสินค้า</h3>
 							<span>Buy</span>
@@ -131,7 +150,7 @@
 					</a>
 				</div>
 				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
+					<a href="sell-product.php" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
 						<div class="desc">
 							<h3>ลงประกาศขายสินค้า</h3>
 							<span>Sell</span>

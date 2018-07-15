@@ -44,8 +44,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
-
-
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -58,13 +56,13 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+
 
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -73,7 +71,22 @@
 	</head>
 	<body>
 
-		<div class="modal fade" id="myModal" role="dialog">
+
+
+		<style>
+.circle{ /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
+    height: 40px;  /* ความสูงปรับให้เป็นออโต้ */
+    width: 40px;  /* ความสูงปรับให้เป็นออโต้ */
+    border: 3px solid #fff; /* เส้นขอบขนาด 3px solid: เส้น #fff:โค้ดสีขาว */
+    border-radius: 50%; /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เงาของรูป */
+}
+</style>
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -82,12 +95,12 @@
         </div>
         <div class="modal-body">
           <center>
-          <form action="check_login.php" method="POST">
+          <form>
     <div class="form-group">
-      <input type="text" class="form-control" name="usr" placeholder="Username">
+      <input type="text" class="form-control" id="usr" placeholder="Username">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" name="pwd" placeholder="Password">
+      <input type="password" class="form-control" id="pwd" placeholder="Password">
     </div>
     <input type="submit" class="btn btn-success" id="pwd" placeholder="Password" value="เข้าสู่ระบบ">
   </form>
@@ -100,6 +113,9 @@
       </div>
     </div>
   </div>
+
+
+
 	
 	
 	<div id="fh5co-page">
@@ -109,134 +125,80 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						
 						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
+						<a href="" data-toggle="modal" data-target="#myModal"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-	<br>
-	<br>
-	<div id="fh5co-featured-section">
-		<div class="container">
-			<div class="row">
-				
-				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
-						<div class="desc">
-							<h3>ชื้อสินค้า</h3>
-							<span>Buy</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
-						<div class="desc">
-							<h3>ลงประกาศขายสินค้า</h3>
-							<span>Sell</span>
-						</div>
-					</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="fh5co-services-section">
+	<div id="fh5co-work-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Awesome Services</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 services-inner text-center">
-					<span><i class="sl-icon-graph"></i></span>
-					<h3>Finance Dashboard</h3>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-				<div class="col-md-4 services-inner text-center">
-					<span><i class="sl-icon-heart"></i></span>
-					<h3>Made with Love</h3>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-				<div class="col-md-4 services-inner text-center">
-					<span><i class="sl-icon-key"></i></span>
-					<h3>Help &amp; Support</h3>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<div id="fh5co-blog-section" class="fh5co-grey-bg-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Recent Blog</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					<h2>ประเภทสินค้า</h2>
+					<p>Category</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#"><img class="img-responsive" src="images/image_4.jpg" alt="Blog"></a>
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/Cereal.jpg);">
+						</a>
 						<div class="desc">
-							<h3><a href="#">New iPhone 6 Released</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
+							<h3><a href="#">ธัญพืช</a></h3>
+							<span>Cereal</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#"><img class="img-responsive" src="images/image_5.jpg" alt="Blog"></a>
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/image_2.jpg);">
+						</a>
 						<div class="desc">
-							<h3><a href="#">Start your day with a beautiful appearance</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
+							<h3><a href="#">ถั่ว</a></h3>
+							<span>Nut</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#"><img class="img-responsive" src="images/image_6.jpg" alt="Blog"></a>
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/image_3.jpg);">
+						</a>
 						<div class="desc">
-							<h3><a href="#">Bookmarksgrove right</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
+							<h3><a href="#">Work with love</a></h3>
+							<span>Web Design</span>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div id="fh5co-client-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Our Happy Clients</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 text-center">
-					<div class="testimony">
-						<span class="quote"><i class="icon-quote-right"></i></span>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<span>Athan Smith, via <a href="#" class="icon-twitter twitter-color"></a></span>
-						</blockquote>
+				<div class="col-md-4 text-center">
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/image_4.jpg);">
+						</a>
+						<div class="desc">
+							<h3><a href="#">Work with love</a></h3>
+							<span>Web Design</span>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-6 text-center">
-					<div class="testimony">
-						<span class="quote"><i class="icon-quote-right"></i></span>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<span>Athan Smith, via <a href="#" class="icon-google-plus googleplus-color"></a></span>
-						</blockquote>
+				<div class="col-md-4 text-center">
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/image_5.jpg);">
+						</a>
+						<div class="desc">
+							<h3><a href="#">Work with love</a></h3>
+							<span>Web Design</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/image_6.jpg);">
+						</a>
+						<div class="desc">
+							<h3><a href="#">Work with love</a></h3>
+							<span>Web Design</span>
+						</div>
 					</div>
 				</div>
 			</div>
