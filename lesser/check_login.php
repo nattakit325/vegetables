@@ -24,11 +24,11 @@
 			}
 			else if($objResult["status"] == "ปัจจัย")
 			{
-				header("location:index.php");
+				header("location:indexag.php");
 			}
 			else
 			{
-				header("location:index.php");
+				header("location:indexag.php");
 			}
 	}
 	mysqli_close($objCon);

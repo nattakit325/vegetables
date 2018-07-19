@@ -89,40 +89,48 @@
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 					<h2>ลงทะเบียนสมาชิกใหม่</h2>
 					<p><span>New Member Registration</span></p>
+					<p><span><a href="connect.php">Test connect</a></span></p>
 				</div>
 			</div>
 			<div class="row">
 				
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="First name" type="text" name="firstname">
+						<form action="save-register.php" method="post">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="First name" type="text" name="firstname">
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="Last name" type="text" name="lastname">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="Last name" type="text" name="lastname">
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="Username" type="text" name="username">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="Username" type="text" name="username">
+								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="Password" type="text" name="password">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="Password" type="password" name="password">
+								</div>
 							</div>
-						</div>
-
-
-
-						<div class="col-md-12">
-							<div class="form-group">
-								<textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+							<div class="col-md-6">
+								<div class="form-group">
+									<select class="form-control" name="status">
+										<option value="เกษตรกร">เกษตรกร</option>
+										<option value="ปัจจัย">ปัจจัย</option>
+									</select>
+								</div>
 							</div>
-						</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="อายุ" type="number" name="age">
+								</div>
+							</div>
+						
 						
 					</div>
 				</div>
@@ -138,14 +146,15 @@
 
 	<div id="map" data-animate-effect="fadeIn"></div>
 	
-  <div class="col-md-12">
+  			<div class="col-md-12">
               <div class="form-group">
                 <br>
                 <center>
                 <input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="submit">
                 </center>
               </div>
-            </div>
+			</div>
+		</form>	
             
 	
 	

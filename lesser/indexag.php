@@ -1,3 +1,19 @@
+<?php
+	session_start();
+	include "connect.php";
+
+	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
+	$SQL = "SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name ";
+	$Query = mysqli_query($objCon,$SQL);
+
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
+    $query=mysqli_query($objCon,$sql);
+    $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
+
+?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -163,8 +179,8 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
-						<a href="" data-toggle="modal" data-target="#myModal"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
+						<li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
+						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
@@ -185,13 +201,12 @@
 					</a>
 				</div>
 				<div class="col-md-6">
-					<a href="#" class="featured-grid featured-grid-2" style="background-image: url(images/sell3.jpg);">
+					<a href="sell-product.php" class="featured-grid featured-grid-2" style="background-image: url(images/sell3.jpg);">
 						<div class="desc">
 							<h3>ขายสินค้า</h3>
 							<span>Sell</span>
 						</div>
 					</a>
-					
 				</div>
 			</div>
 		</div>
@@ -258,4 +273,6 @@
 
 	</body>
 </html>
+
+
 

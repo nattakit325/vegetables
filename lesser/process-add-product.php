@@ -54,6 +54,6 @@ echo "<br>";
 
 
 ?>
-<a href="index.php">View files</a>
+<a href="indexag.php">View files</a>
 </body>
 </html>

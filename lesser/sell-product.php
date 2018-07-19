@@ -126,12 +126,8 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-                        <?php if($_SESSION['username'] != "") { ?>
-						    <li><a href="profile.php"><?php echo $_SESSION["username"]; ?></a></li>
-						<?php } ?>
-						<?php if($_SESSION['username'] == "") { ?>
-						    <li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
-						<?php } ?>
+						<li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
+						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
@@ -163,8 +159,8 @@
 					<div class="blog-inner">
 						<a href="add-product.php"><img class="img-responsive" src="images/image_5.jpg" alt="Blog"></a>
 						<div class="desc">
-							<h3><a href="#">เพิ่มสินค้า</a></h3>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow">เพิ่ม<i class="icon-arrow-right"></i></a></p>
+							<h3>เพิ่มสินค้า</h3>
+							<p><a href="add-product.php" class="btn btn-primary btn-outline with-arrow">เพิ่ม<i class="icon-arrow-right"></i></a></p>
 						</div>
 					</div>
 				</div>

@@ -2,7 +2,7 @@
     $server="localhost";
     $user="root";
     $password="";
-    $db="smartfarmer";
+    $db="nattakit_db";
 
     $objCon = mysqli_connect($server,$user,$password,$db);
 
