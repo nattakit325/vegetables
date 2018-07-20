@@ -6,7 +6,7 @@
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' AND id = '".$_GET["id"]."' ";
     $query=mysqli_query($objCon,$sql);
     $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
 

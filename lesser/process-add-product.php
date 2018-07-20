@@ -44,12 +44,15 @@ echo "<br>";
 		$strSQL1 .="(name,detail,type,category,picture) VALUES ('".$_POST["na"]."','".$_POST["am"]."','".$_POST["pr"]."','".$_POST["day"]."','".$_FILES["filUpload"]["name"]."')";
 		$objQuery = mysqli_query($objCon,$strSQL1);
 
-		$strSQL2 = "INSERT INTO selllist ";
+		$strSQL2 = "INSERT INTO `selllist` ";
 		$strSQL2 .="(productname,amount,price,time,username) VALUES ('".$_POST["na"]."','".$_POST["amo"]."','".$_POST["pri"]."','".$_POST["date"]."','".$_SESSION['username']."')";
 		$objQuery = mysqli_query($objCon,$strSQL2);
 
 		echo $_SESSION['username'];
-		
+		echo $_POST['amo'];
+		echo $_POST["pri"];
+		echo $_POST["date"];
+
 	}
 
 

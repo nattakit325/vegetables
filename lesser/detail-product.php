@@ -6,9 +6,13 @@
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
+	$pname=$_GET["id"];
+
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' AND id = '".$_GET["id"]."' ";
     $query=mysqli_query($objCon,$sql);
-    $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
+	$objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
+
+	
 
 ?>
 <!DOCTYPE html>
@@ -130,7 +134,7 @@
 								<h3>รายละเอียด</h3>
 								<p><?php echo $objResult1["detail"];?></p>
 							</div>
-							<a class="btn btn-primary" href="edit-product.php">แก้ไข</a>
+							<a class="btn btn-primary" href="edit-product.php?id=<?php echo $objResult1["id"];?>">แก้ไข</a>
 						</div>
 					</aside>
 				</div>
