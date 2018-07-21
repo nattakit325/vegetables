@@ -60,7 +60,19 @@
 
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#dd1").click(function(){
+          $("#d1").remove();
+    });
+    $("#dd2").click(function(){
+          $("#d2").remove();
+    });
+    
+   
+});
+</script>
 
 
 	<!-- Modernizr JS -->
@@ -73,6 +85,20 @@
 	</head>
 	<body>
 	
+
+	<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-content">
+        
+        <div class="modal-body">
+         
+          <div id="map" data-animate-effect="fadeIn"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">เพิ่ม</button>
+        </div>
+      </div>
+    
+  </div>
 	
 	<div id="fh5co-page">
 	<header id="fh5co-header" role="banner">
@@ -91,6 +117,7 @@
 					<p><span>Edit for your infomation</span></p>
 				</div>
 			</div>
+
 			<div class="row">
 				
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
@@ -99,6 +126,16 @@
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<div class="row">
 						<form action="save-register.php" method="post">
+							<div class="col-md-4 text-center">
+
+					<div class="work-inner">
+						<a  class="work-grid" style="background-image: url(images/profile.png);">
+						</a>
+						<div class="desc">
+							<input class="form-control" placeholder="Picture" type="file" name="lastname">
+						</div>
+					</div>
+				</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<input class="form-control" placeholder="First name" type="text" name="firstname">
@@ -141,35 +178,67 @@
 			</div>
 		</div>
 	</div>
-<div class="row">
+	<center><h2>เปลี่ยนแปลงสถานที่ขายสินค้าของคุณ</h2>
+          <p><span>Edit location where your products sold</span></p><br></center>
+<div class="row" id="d1">
         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-          <h2>เปลี่ยนแปลงสถานที่ขายสินค้าของคุณ</h2>
-          <p><span>Edit location where your products sold</span></p><br>
           <div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="สถานที่ 1 " type="text" name="password">
+								<div class="form-group">
+									<select class="form-control" name="status" id="place">
+										<option value="เกษตรกร">สถานที่ 1 </option>
+										<option value="ปัจจัย">สถานที่ 2</option>
+										<option value="ปัจจัย">สถานที่ 3</option>
+									</select>
+								</div>
 							</div>
-						</div>
-						 <div class="col-md-6">
+							<div class="col-md-6">
 							<div class="form-group">
-								<input class="form-control" placeholder="สถานที่ 2 " type="text" name="password">
-							</div>
-						</div>
-						 <div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="สถานที่ 3 " type="text" name="password">
-							</div>
-						</div>
-						 <div class="col-md-6">
-							<div class="form-group">
-								<input class="form-control" placeholder="สถานที่ 4 " type="text" name="password">
+								<center>
+								<button type="button" class="btn btn-danger" id="dd1">ลบ</button>
+								</center>
 							</div>
 						</div>
 
         </div>
+        
+      </div>
+      <div class="row" id="d2">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+          <div class="col-md-6">
+								<div class="form-group">
+									<select class="form-control" name="status" id="place">
+										<option value="เกษตรกร">สถานที่ 1 </option>
+										<option value="ปัจจัย">สถานที่ 2</option>
+										<option value="ปัจจัย">สถานที่ 3</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+							<div class="form-group">
+								<center>
+								<button type="button" class="btn btn-danger" id="dd2">ลบ</button>
+								</center>
+							</div>
+						</div>
+
+
+          
+
+        </div>
+        
       </div>
 
-	<div id="map" data-animate-effect="fadeIn"></div>
+        	 <div class="col-md-12">
+							<div class="form-group">
+								<center>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่ของคุณ</button>
+								</center>
+							</div>
+						</div>
+        
+        
+
+	
 	
   <div class="col-md-12">
               <div class="form-group">
