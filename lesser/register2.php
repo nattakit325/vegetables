@@ -66,12 +66,26 @@
 $(document).ready(function(){
     $("#place").change(function(){
 	var place1 = document.getElementById("place");
+    var show = document.getElementById("show");
+    var option = document.createElement("option");
+    option.text = place1.value;
+    show.add(option);
 	margetarr.push(place1.value);
-    $("p").append("<br>"+place1.value+" X ");
+
+    //$("p").append("<br>"+place1.value+" X ");
 	$("#place option:selected").remove();
     });
 
 });
+function myFunction() {
+    var x = document.getElementById("show");
+	var place = document.getElementById("place");
+    var option = document.createElement("option");
+    option.text = x.value;
+    place.add(option);
+    console.log(x.value);
+    x.remove(x.selectedIndex);
+}
 </script>
 
 
@@ -107,86 +121,46 @@ $(document).ready(function(){
 				
 			</div>
 		</div>
-	</header>
-	<div id="fh5co-contact-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>ลงทะเบียนสมาชิกใหม่</h2>
-					<p><span>New Member Registration</span></p>
-					<p><span><a href="connect.php">Test connect</a></span></p>
-				</div>
-			</div>
-			<div class="row">
-				
-				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-					<div class="row">
-						<form action="save-register.php" method="post">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="First name" type="text" name="firstname">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="Last name" type="text" name="lastname">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="Username" type="text" name="username">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="Password" type="password" name="password">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<select class="form-control" name="status">
-										<option value="เกษตรกร">เกษตรกร</option>
-										<option value="ปัจจัย">ปัจจัย</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="อายุ" type="number" name="age">
-								</div>
-							</div>
-						
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-<div class="row">
+    </header>
+<div id="fh5co-contact-section">
+	<div class="row">
         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
           <h2>กำหนดสถานที่ขายสินค้าของคุณ</h2>
           <p><span>Set location where your products sold</span></p>
-
-          <div class="col-md-6">
-								<div class="form-group">
-									<select class="form-control" name="status" id="place">
-										<option selected>เลือกตลาด</option>
-										<option value="สถานที่ 1">สถานที่ 1 </option>
-										<option value="สถานที่ 2">สถานที่ 2</option>
-										<option value="สถานที่ 3">สถานที่ 3</option>
-									</select>
-								</div>
-							</div>
-           <div class="col-md-6">
+                        <div class="col-md-6">
 							<div class="form-group">
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่ของคุณ</button>
+								<select class="form-control" name="status"  id="show" size="5">
+									
+								</select>
 							</div>
-						</div>
-						
-
+                        </div>
+                        <div class="col-md-6">
+							<div class="form-group">
+								<button type="button" class="btn btn-info" data-toggle="modal" onclick="myFunction()">ลบที่คุณเลือก</button>
+							</div>
+                        </div>
         </div>
-      </div>
-
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+            <div class="col-md-6">
+				<div class="form-group">
+					<select class="form-control" name="status" id="place">
+						<option selected>เลือกตลาด</option>
+						<option value="สถานที่ 1">สถานที่ 1 </option>
+						<option value="สถานที่ 2">สถานที่ 2</option>
+						<option value="สถานที่ 3">สถานที่ 3</option>
+					</select>
+				</div>
+			</div>
+            <div class="col-md-6">
+				<div class="form-group">
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่ของคุณ</button>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
 	
 	
   			<div class="col-md-12">
