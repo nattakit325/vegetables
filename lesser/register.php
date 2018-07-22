@@ -62,10 +62,15 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+	var margetarr = [];
 $(document).ready(function(){
     $("#place").change(function(){
-          $("pp").append("<br>สถานที่");
+	var place1 = document.getElementById("place");
+	margetarr.push(place1.value);
+    $("p").append("<br>"+place1.value);
+	$("#place option:selected").remove();
     });
+
 });
 </script>
 
@@ -117,37 +122,24 @@ $(document).ready(function(){
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<div class="row">
 						<form action="save-register.php" method="post">
-<div class="col-md-4 text-center">
-
-					<div class="work-inner">
-						<a  class="work-grid" style="background-image: url(images/profile.png);">
-						</a>
-						<div class="desc">
-							<input class="form-control" placeholder="Picture" type="file" name="lastname">
-						</div>
-					</div>
-				</div>
-							
 							<div class="col-md-6">
-
-
 								<div class="form-group">
-									<input class="form-control" placeholder="ชื่อจริง" type="text" name="firstname">
+									<input class="form-control" placeholder="First name" type="text" name="firstname">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" placeholder="นามสกุล" type="text" name="lastname">
+									<input class="form-control" placeholder="Last name" type="text" name="lastname">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" placeholder="ชื่อผู้ใช้งาน" type="text" name="username">
+									<input class="form-control" placeholder="Username" type="text" name="username">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" placeholder="รหัสผ่าน" type="password" name="password">
+									<input class="form-control" placeholder="Password" type="password" name="password">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -172,47 +164,16 @@ $(document).ready(function(){
 	</div>
 <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-          <h2>ช่องทางการติดต่อของคุณ</h2>
-          <p ip="pp"><span>Your contact</span></p>
-
-          <div class="col-md-6">
-
-
-								<div class="form-group">
-									<input class="form-control" placeholder="ที่อยู่" type="text" name="firstname">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="เบอร์โทรศัพท์" type="text" name="lastname">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="Facebook" type="text" name="username">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" placeholder="Line" type="text" name="username">
-								</div>
-							</div>
-						
-
-        </div>
-      </div>
-
-<div class="row">
-        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
           <h2>กำหนดสถานที่ขายสินค้าของคุณ</h2>
-          <p ip="pp"><span>Set location where your products sold</span></p>
+          <p><span>Set location where your products sold</span></p>
 
           <div class="col-md-6">
 								<div class="form-group">
 									<select class="form-control" name="status" id="place">
-										<option value="เกษตรกร">สถานที่ 1 </option>
-										<option value="ปัจจัย">สถานที่ 2</option>
-										<option value="ปัจจัย">สถานที่ 3</option>
+										<option selected>เลือกตลาด</option>
+										<option value="สถานที่ 1">สถานที่ 1 </option>
+										<option value="สถานที่ 2">สถานที่ 2</option>
+										<option value="สถานที่ 3">สถานที่ 3</option>
 									</select>
 								</div>
 							</div>
