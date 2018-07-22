@@ -6,15 +6,10 @@
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-	$SQL = "SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name ";
-	$Query = mysqli_query($objCon,$SQL);
-
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE type='เครื่องมือ' ";
     $query=mysqli_query($objCon,$sql);
-    $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
 
 ?>
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -23,7 +18,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Lesser &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
+	<title>Buy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -60,8 +55,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
-
-
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -74,25 +67,34 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+
 
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
 	</head>
+	<body>
 
 
-	<style>
+
+		<style>
 .circle{ /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
     height: 40px;  /* ความสูงปรับให้เป็นออโต้ */
     width: 40px;  /* ความสูงปรับให้เป็นออโต้ */
+    border: 3px solid #fff; /* เส้นขอบขนาด 3px solid: เส้น #fff:โค้ดสีขาว */
+    border-radius: 50%; /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เงาของรูป */
+}
+.picture{ /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
+    height: 90px;  /* ความสูงปรับให้เป็นออโต้ */
+    width: 90px;  /* ความสูงปรับให้เป็นออโต้ */
     border: 3px solid #fff; /* เส้นขอบขนาด 3px solid: เส้น #fff:โค้ดสีขาว */
     border-radius: 50%; /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เงาของรูป */
@@ -101,9 +103,8 @@
 
 
 
-	<body>
 
-		<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -134,42 +135,6 @@
   </div>
 
 
-  <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Facilisis volutpat vestibulum aliquet</h4>
-        </div>
-        <div class="modal-body">
-          <p>Donec congue sollicitudin purus at sodales praesent augue elit lacinia et dui ac porta lobortis lectus lorem ipsum dolor sit amet consectetur adipiscing elit nulla vitae elit sit amet ante ultricies malesuada eget id dolor</p>
-        <p>Proin mattis lorem sed tristique tincidunt enim ante maximus felis id accumsan sapien leo sed augue [&hellip;]</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-   <div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Facilisis volutpat vestibulum aliquet</h4>
-        </div>
-        <div class="modal-body">
-          <img class="img-responsive" src="images/sell2.jpg" alt="Blog"></a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 	
 	
 	<div id="fh5co-page">
@@ -179,84 +144,64 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
+                        <li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
 						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-	<br>
-	<br>
-	<div id="fh5co-featured-section">
-		<div class="container">
-			<div class="row">
-				
-				<div class="col-md-6">
-					<a href="buy-farmer.php" class="featured-grid featured-grid-2" style="background-image: url(images/buy.jpg);">
-						<div class="desc">
-							<h3>ชื้อสินค้า</h3>
-							<span>Buy</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-6">
-					<a href="sell-product.php" class="featured-grid featured-grid-2" style="background-image: url(images/sell3.jpg);">
-						<div class="desc">
-							<h3>ขายสินค้า</h3>
-							<span>Sell</span>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
-	<div id="fh5co-blog-section" class="fh5co-grey-bg-section">
+	<div id="fh5co-main-services-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>ข่าวสารล่าสุด</h2>
-					<p>Latest News</p>
+					<h2>สินค้านำเสนอสำหรับคุณ</h2>
+                    <p><span>Product for you</a></span></p>
+                    <form class="form-inline" name="searchform" id="searchform">
+                        <div class="form-group">
+                            <label for="textsearch" >ชื่อสินค้า</label>
+                            <input type="text" name="itemname" id="itemname" class="form-control" placeholder="ข้อความ คำค้นหา!" autocomplete="off">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnSearch">
+                            <span class="glyphicon glyphicon-search"></span>
+                            ค้นหา
+                        </button>
+                    </form>     
 				</div>
-			</div>
+            </div>
+            <div class="row">
+				<div class="col-md-12">
+                    <div class="row">
+                    <div class="row" id="list-data" style="margin-top: 10px;">
+			        </div>
+				</div>
+            </div>
+            <div class="row">
+				<div class="fh5co-heading">
+					<h2>แนะนำ</h2> 
+				</div>
+            </div>
 			<div class="row">
-				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#" data-toggle="modal" data-target="#myModal2"><img class="img-responsive" src="images/sell.jpg" alt="Blog"></a>
-						<div class="desc">
-							<h3><a href="#" data-toggle="modal" data-target="#myModal1" >New iPhone 6 Released</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow" data-toggle="modal" data-target="#myModal1">Read More<i class="icon-arrow-right"></i></a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#" data-toggle="modal" data-target="#myModal2"><img class="img-responsive" src="images/sell2.jpg" alt="Blog"></a>
-						<div class="desc">
-							<h3><a href="#" data-toggle="modal" data-target="#myModal1">Start your day with a beautiful appearance</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow" data-toggle="modal" data-target="#myModal1">Read More<i class="icon-arrow-right"></i></a></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#" data-toggle="modal" data-target="#myModal2"><img class="img-responsive" src="images/sell3.jpg" alt="Blog"></a>
-						<div class="desc">
-							<h3><a href="#" data-toggle="modal" data-target="#myModal1">Bookmarksgrove right</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow" data-toggle="modal" data-target="#myModal1">Read More<i class="icon-arrow-right"></i></a></p>
-						</div>
-					</div>
+				<div class="col-md-12">
+                    <div class="row">
+                    <?php while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){ ?>
+                        <div class="col-md-4 text-center">
+                            <div class="blog-inner">
+                                <a href="detail-product.php?id=<?php echo $row["id"];?>"><img class="img-responsive" src="myfile/<?php echo $row["picture"];?>" alt="Blog"></a>
+                                <div class="desc">
+                                    <h3><a href="detail-product.php?id=<?php echo $row["id"];?>"><?php echo $row["name"];?></a></h3>
+                                    <p><?php echo $row["detail"];?></p>
+                                    <p><a href="detail-product.php?id=<?php echo $row["id"];?>" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
+                                </div>
+                            </div>
+                        </div>
+				    <?php } ?>
+			        </div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	
-	
 	</div>
 	
 	
@@ -269,10 +214,36 @@
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
-
+    <script src="js/main.js"></script>
+    <!-- Search -->
+    <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#btnSearch").click(function () {
+                    $.ajax({
+                        url: "search-tool.php",
+                        type: "post",
+                        data: {itemname: $("#itemname").val()},
+                        beforeSend: function () {
+                            $(".loading").show();
+                        },
+                        complete: function () {
+                            $(".loading").hide();
+                        },
+                        success: function (data) {
+                            $("#list-data").html(data);
+                        }
+                    });
+                });
+                $("#searchform").on("keyup keypress",function(e){
+                   var code = e.keycode || e.which;
+                   if(code==13){
+                       $("#btnSearch").click();
+                       return false;
+                   }
+                });
+            });
+        </script>
 	</body>
 </html>
-
-
 

@@ -142,7 +142,7 @@
 			<div class="row">
 				
 				<div class="col-md-6">
-					<a href="buy-product.php" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
+					<a href="buy-farmer.php" class="featured-grid featured-grid-2" style="background-image: url(images/image_2.jpg);">
 						<div class="desc">
 							<h3>ชื้อสินค้า</h3>
 							<span>Buy</span>
