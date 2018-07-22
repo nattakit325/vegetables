@@ -59,7 +59,9 @@
 	<link rel="stylesheet" href="css/style.css">
 
 
-
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2G4KpiHxEwq-geWsql29f4CL7ks4rPP0&callback=setupMap">
+	</script>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	var margetarr = [];
@@ -71,7 +73,7 @@ $(document).ready(function(){
     option.text = place1.value;
     show.add(option);
 	margetarr.push(place1.value);
-
+	console.log(margetarr);
     //$("p").append("<br>"+place1.value+" X ");
 	$("#place option:selected").remove();
     });
@@ -83,8 +85,81 @@ function myFunction() {
     var option = document.createElement("option");
     option.text = x.value;
     place.add(option);
-    console.log(x.value);
-    x.remove(x.selectedIndex);
+	Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+	};
+	margetarr.remove(x.value);
+	console.log(x.value);
+	console.log(margetarr);
+	x.remove(x.selectedIndex);
+	
+}
+
+function saveLatLng() {
+
+var lat = $("#lat").val();
+var lng = $("#lng").val();
+var location_name = $("#location_name").val();
+var show = document.getElementById("show");
+    var option = document.createElement("option");
+    option.text = location_name;
+	show.add(option);
+	close();
+}
+
+function setupMap() {
+var myOptions = {
+	zoom: 13,
+	center: new google.maps.LatLng(16.024695711685314, 103.13690185546875),
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+
+var marker = new google.maps.Marker({
+	map: map,
+	position: new google.maps.LatLng(15.000682, 103.728207),
+	draggable: true
+});
+
+
+var infowindow = new google.maps.InfoWindow;
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function (position) {
+		var pos = {
+			lat: position.coords.latitude,
+			lng: position.coords.longitude
+		};
+		infowindow.setPosition(pos);
+		infowindow.setContent('คุณอยู่ตรงนี้');
+		infowindow.open(map);
+		map.setCenter(pos);
+	});
+
+}
+
+google.maps.event.addListener(map, 'click', function (event) {
+
+	var html = '';
+	html += 'lat : <input type="text" id="lat" value="' + event.latLng.lat() + '" /><br/>';
+	html += 'lng : <input type="text" id="lng" value="' + event.latLng.lng() + '" /><br/>';
+	html += 'location name : <input type="text" id="location_name" value="" /><br/>';
+	html += '<input type="button" value="Save" onclick="saveLatLng()" />';
+
+	infowindow.open(map, marker);
+	infowindow.setContent(html);
+	infowindow.setPosition(event.latLng);
+	marker.setPosition(event.latLng);
+
+});
+
+
 }
 </script>
 
@@ -103,8 +178,11 @@ function myFunction() {
       <div class="modal-content">
         
         <div class="modal-body">
-         
-          <div id="map" data-animate-effect="fadeIn"></div>
+			<body onload="setupMap()">
+
+				<div id="map_canvas" style="width:800px;height:450px;"></div>
+
+			</body>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">เพิ่ม</button>
@@ -129,7 +207,7 @@ function myFunction() {
           <p><span>Set location where your products sold</span></p>
                         <div class="col-md-6">
 							<div class="form-group">
-								<select class="form-control" name="status"  id="show" size="5">
+								<select class="form-control" name="status"  id="show" size="0">
 									
 								</select>
 							</div>
@@ -184,8 +262,6 @@ function myFunction() {
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
 
