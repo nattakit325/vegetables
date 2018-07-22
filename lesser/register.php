@@ -62,10 +62,15 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+	var margetarr = [];
 $(document).ready(function(){
     $("#place").change(function(){
-          $("p").append("<br>สถานที่");
+	var place1 = document.getElementById("place");
+	margetarr.push(place1.value);
+    $("p").append("<br>"+place1.value);
+	$("#place option:selected").remove();
     });
+
 });
 </script>
 
@@ -165,9 +170,10 @@ $(document).ready(function(){
           <div class="col-md-6">
 								<div class="form-group">
 									<select class="form-control" name="status" id="place">
-										<option value="เกษตรกร">สถานที่ 1 </option>
-										<option value="ปัจจัย">สถานที่ 2</option>
-										<option value="ปัจจัย">สถานที่ 3</option>
+										<option selected>เลือกตลาด</option>
+										<option value="สถานที่ 1">สถานที่ 1 </option>
+										<option value="สถานที่ 2">สถานที่ 2</option>
+										<option value="สถานที่ 3">สถานที่ 3</option>
 									</select>
 								</div>
 							</div>
