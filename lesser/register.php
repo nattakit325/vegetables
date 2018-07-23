@@ -13,12 +13,12 @@
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
 
-  <!-- 
+  <!--
 	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
+	FREE HTML5 TEMPLATE
 	DESIGNED & DEVELOPED by FreeHTML5.co
-		
+
 	Website: 		http://freehtml5.co/
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
@@ -46,7 +46,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -60,19 +60,110 @@
 
 
 
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2G4KpiHxEwq-geWsql29f4CL7ks4rPP0&callback=setupMap">
+	</script>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	var margetarr = [];
 $(document).ready(function(){
     $("#place").change(function(){
 	var place1 = document.getElementById("place");
+    var show = document.getElementById("show");
+    var option = document.createElement("option");
+    option.text = place1.value;
+    show.add(option);
 	margetarr.push(place1.value);
-    $("p").append("<br>"+place1.value+" X ");
+	console.log(margetarr);
+    //$("p").append("<br>"+place1.value+" X ");
 	$("#place option:selected").remove();
     });
 
 });
+function myFunction() {
+    var x = document.getElementById("show");
+	var place = document.getElementById("place");
+    var option = document.createElement("option");
+    option.text = x.value;
+    place.add(option);
+	Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+	};
+	margetarr.remove(x.value);
+	console.log(x.value);
+	console.log(margetarr);
+	x.remove(x.selectedIndex);
+
+}
+
+function saveLatLng() {
+
+var lat = $("#lat").val();
+var lng = $("#lng").val();
+var location_name = $("#location_name").val();
+var show = document.getElementById("show");
+    var option = document.createElement("option");
+    option.text = location_name;
+	show.add(option);
+	close();
+}
+
+function setupMap() {
+var myOptions = {
+	zoom: 13,
+	center: new google.maps.LatLng(16.024695711685314, 103.13690185546875),
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+
+var marker = new google.maps.Marker({
+	map: map,
+	position: new google.maps.LatLng(15.000682, 103.728207),
+	draggable: true
+});
+
+
+var infowindow = new google.maps.InfoWindow;
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(function (position) {
+		var pos = {
+			lat: position.coords.latitude,
+			lng: position.coords.longitude
+		};
+		infowindow.setPosition(pos);
+		infowindow.setContent('คุณอยู่ตรงนี้');
+		infowindow.open(map);
+		map.setCenter(pos);
+	});
+
+}
+
+google.maps.event.addListener(map, 'click', function (event) {
+
+	var html = '';
+	html += 'lat : <input type="text" id="lat" value="' + event.latLng.lat() + '" /><br/>';
+	html += 'lng : <input type="text" id="lng" value="' + event.latLng.lng() + '" /><br/>';
+	html += 'location name : <input type="text" id="location_name" value="" /><br/>';
+	html += '<input type="button" value="Save" onclick="saveLatLng()" />';
+
+	infowindow.open(map, marker);
+	infowindow.setContent(html);
+	infowindow.setPosition(event.latLng);
+	marker.setPosition(event.latLng);
+
+});
+
+
+}
 </script>
+
 
 
 	<!-- Modernizr JS -->
@@ -84,19 +175,19 @@ $(document).ready(function(){
 
 	</head>
 	<body>
-	
+
 	<div class="modal fade" id="myModal" role="dialog">
       <div class="modal-content">
-        
-        <div class="modal-body">
-         
-          <div id="map" data-animate-effect="fadeIn"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">เพิ่ม</button>
+
+	  <div class="modal-body">
+			<body onload="setupMap()">
+
+				<div id="map_canvas" style="width:800px;height:450px;"></div>
+
+			</body>
         </div>
       </div>
-    
+
   </div>
 
 	<div id="fh5co-page">
@@ -104,7 +195,7 @@ $(document).ready(function(){
 		<div class="container">
 			<div class="header-inner">
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesser</a></h1>
-				
+
 			</div>
 		</div>
 	</header>
@@ -118,7 +209,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
-				
+
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<div class="row">
 						<form action="save-register.php" method="post">
@@ -155,40 +246,54 @@ $(document).ready(function(){
 									<input class="form-control" placeholder="อายุ" type="number" name="age">
 								</div>
 							</div>
-						
-						
+
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<div class="row">
+	<div class="row">
         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
           <h2>กำหนดสถานที่ขายสินค้าของคุณ</h2>
           <p><span>Set location where your products sold</span></p>
-
-          <div class="col-md-6">
-								<div class="form-group">
-									<select class="form-control" name="status" id="place">
-										<option selected>เลือกตลาด</option>
-										<option value="สถานที่ 1">สถานที่ 1 </option>
-										<option value="สถานที่ 2">สถานที่ 2</option>
-										<option value="สถานที่ 3">สถานที่ 3</option>
-									</select>
-								</div>
-							</div>
-           <div class="col-md-6">
+                        <div class="col-md-6">
 							<div class="form-group">
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่ของคุณ</button>
+								<select class="form-control" name="status"  id="show" size="0">
+
+								</select>
 							</div>
-						</div>
-						
-
+                        </div>
+                        <div class="col-md-6">
+							<div class="form-group">
+								<button type="button" class="btn btn-info" data-toggle="modal" onclick="myFunction()">ลบที่คุณเลือก</button>
+							</div>
+                        </div>
         </div>
-      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+            <div class="col-md-6">
+				<div class="form-group">
+					<select class="form-control" name="status" id="place">
+						<option selected>เลือกตลาด</option>
+						<option value="สถานที่ 1">สถานที่ 1 </option>
+						<option value="สถานที่ 2">สถานที่ 2</option>
+						<option value="สถานที่ 3">สถานที่ 3</option>
+					</select>
+				</div>
+			</div>
+            <div class="col-md-6">
+				<div class="form-group">
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่ของคุณ</button>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
 
-	
-	
+
+
   			<div class="col-md-12">
               <div class="form-group">
                 <br>
@@ -197,10 +302,10 @@ $(document).ready(function(){
                 </center>
               </div>
 			</div>
-		</form>	
-            
-	
-	
+		</form>
+
+
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -210,8 +315,6 @@ $(document).ready(function(){
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
 
@@ -219,4 +322,3 @@ $(document).ready(function(){
 
 	</body>
 </html>
-
