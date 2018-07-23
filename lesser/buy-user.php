@@ -1,4 +1,19 @@
+<?php
+	session_start();
+	include "connect.php";
 
+	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
+	$SQL = "SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name ";
+	$Query = mysqli_query($objCon,$SQL);
+
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
+    $query=mysqli_query($objCon,$sql);
+    $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -7,7 +22,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VegetableGether</title>
+	<title>Buy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -44,8 +59,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
-
-
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -58,22 +71,24 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+
 
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
 	</head>
+	<body>
 
 
-	<style>
+
+		<style>
 .circle{ /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
     height: 40px;  /* ความสูงปรับให้เป็นออโต้ */
     width: 40px;  /* ความสูงปรับให้เป็นออโต้ */
@@ -85,9 +100,8 @@
 
 
 
-	<body>
 
-		<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -118,42 +132,6 @@
   </div>
 
 
-  <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"> ตลาดสดหนองหอย โซนเกษตรอินทรีย์</h4>
-        </div>
-        <div class="modal-body">
-          <p>Donec congue sollicitudin purus at sodales praesent augue elit lacinia et dui ac porta lobortis lectus lorem ipsum dolor sit amet consectetur adipiscing elit nulla vitae elit sit amet ante ultricies malesuada eget id dolor</p>
-        <p>Proin mattis lorem sed tristique tincidunt enim ante maximus felis id accumsan sapien leo sed augue [&hellip;]</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-   <div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"> ตลาดสดหนองหอย โซนเกษตรอินทรีย์</h4>
-        </div>
-        <div class="modal-body">
-          <img class="img-responsive" src="images/sell2.jpg" alt="Blog"></a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 	
 	
 	<div id="fh5co-page">
@@ -163,83 +141,85 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
-						<a href="" data-toggle="modal" data-target="#myModal"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
+                        <li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
+						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-	<br>
-	<br>
-	<div id="fh5co-featured-section">
-		<div class="container">
-			<div class="row">
-				
-				<div class="col-md-6">
-					<a href="buy.php" class="featured-grid featured-grid-2" style="background-image: url(images/buy.jpg);">
-						<div class="desc">
-							<h3>ชื้อสินค้า</h3>
-							<span>Buy</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-6">
-					<a href="#" data-toggle="modal" data-target="#myModal" class="featured-grid featured-grid-2" style="background-image: url(images/sell3.jpg);">
-						<div class="desc">
-							<h3>ขายสินค้า</h3>
-							<span>Sell</span>
-						</div>
-					</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-blog-section" class="fh5co-grey-bg-section">
+	<div id="fh5co-work-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>ข่าวสารล่าสุด</h2>
-					<p>Latest News</p>
+					<h2>ประเภทสินค้า</h2>
+					<p>Category</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#" data-toggle="modal" data-target="#myModal2"><img class="img-responsive" src="images/sell.jpg" alt="Blog"></a>
+					<div class="work-inner">
+						<a href="buylist.html" class="work-grid" style="background-image: url(images/carrot.jpg);">
+						</a>
 						<div class="desc">
-							<h3><a href="#" data-toggle="modal" data-target="#myModal1" > ตลาดสดหนองหอย โซนเกษตรอินทรีย์</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow" data-toggle="modal" data-target="#myModal1">Read More<i class="icon-arrow-right"></i></a></p>
+							<h3><a href="buylist.html">ราก</a></h3>
+							<span>Root</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#" data-toggle="modal" data-target="#myModal2"><img class="img-responsive" src="images/sell2.jpg" alt="Blog"></a>
+					<div class="work-inner">
+						<a href="buylist.html" class="work-grid" style="background-image: url(images/asparagus.jpg);">
+						</a>
 						<div class="desc">
-							<h3><a href="#" data-toggle="modal" data-target="#myModal1">ตลาดนัดข้างคณะบริหารมหาวิทยาลัยแม่โจ้</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow" data-toggle="modal" data-target="#myModal1">Read More<i class="icon-arrow-right"></i></a></p>
+							<h3><a href="buylist.html">ลำต้น</a></h3>
+							<span>trunk</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
-					<div class="blog-inner">
-						<a href="#" data-toggle="modal" data-target="#myModal2"><img class="img-responsive" src="images/sell3.jpg" alt="Blog"></a>
+					<div class="work-inner">
+						<a href="buylist.html" class="work-grid" style="background-image: url(images/cabbage.jpg);">
+						</a>
 						<div class="desc">
-							<h3><a href="#" data-toggle="modal" data-target="#myModal1">โรงพยาบาลนครพิงค์ (ป่าแงะ)</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-							<p><a href="#" class="btn btn-primary btn-outline with-arrow" data-toggle="modal" data-target="#myModal1">Read More<i class="icon-arrow-right"></i></a></p>
+							<h3><a href="buylist.html">ใบ</a></h3>
+							<span>Leaves</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<div class="work-inner">
+						<a href="buylist.html" class="work-grid" style="background-image: url(images/Broccoli.jpg);">
+						</a>
+						<div class="desc">
+							<h3><a href="buylist.html">ดอก</a></h3>
+							<span>blossom</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/tomato.jpg);">
+						</a>
+						<div class="desc">
+							<h3><a href="#">ผล</a></h3>
+							<span>fruit</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<div class="work-inner">
+						<a href="#" class="work-grid" style="background-image: url(images/vegetable.jpg);">
+						</a>
+						<div class="desc">
+							<h3><a href="#">อื่นๆ</a></h3>
+							<span>other</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	
 	
 	</div>

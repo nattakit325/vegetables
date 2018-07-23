@@ -1,4 +1,16 @@
+<?php
+	session_start();
+	include "connect.php";
 
+	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
+	$value1='ปุ๋ย';
+	$value2='เครื่องมือ';
+	$value3;
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -7,7 +19,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Buy</title>
+	<title>Buy For framer</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -81,9 +93,9 @@
     border-radius: 50%; /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เงาของรูป */
 }
-.picture{ /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
-    height: 90px;  /* ความสูงปรับให้เป็นออโต้ */
-    width: 90px;  /* ความสูงปรับให้เป็นออโต้ */
+.circlein{ /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
+    height: 140px;  /* ความสูงปรับให้เป็นออโต้ */
+    width: 140px;  /* ความสูงปรับให้เป็นออโต้ */
     border: 3px solid #fff; /* เส้นขอบขนาด 3px solid: เส้น #fff:โค้ดสีขาว */
     border-radius: 50%; /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เงาของรูป */
@@ -98,21 +110,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <center><h4 class="modal-title">กรุณาเข้าสู่ระบบ</h4></center>
+          <center><h4 class="modal-title">Mr.Best Framer</h4></center>
         </div>
         <div class="modal-body">
           <center>
-						<form action="check_login.php" method="POST">
-							<div class="form-group">
-								<input type="text" class="form-control" name="usr" placeholder="Username">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" name="pwd" placeholder="Password">
-							</div>
-							<input type="submit" class="btn btn-success" id="pwd" placeholder="Password" value="เข้าสู่ระบบ">
-						</form>
+						<img class="circlein" src="images/man.jpg" width="100%" height="100%" />
+						<br>
+						<br>
+						<p>FirstName : Beat</p>
+						<p>LastName   : Framer</p>
+						<p>career     : Framer</p>
+						<p>age        : 41</p>
   <br>
-  <a href="register.html">ยังไม่ได้สมัครบัญชีในระบบ</a>
+
+  <a href="edit.html"><button type="button" class="btn btn-success" >แก้ไขข้อมมูลส่วนตัว</button></a>
         </center>
           
         </div>
@@ -133,92 +144,60 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
-						<a href="" data-toggle="modal" data-target="#myModal"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
+						<li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
+						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-	
-
-	<div id="fh5co-main-services-section">
+	<div id="fh5co-work-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>สินค้านำเสนอสำหรับคุณ</h2>
-					<p><span>Product for you</a></span></p>
-
-
-								<div class="form-group">
-									<input class="form-control" placeholder="ค้นหาสินค้า" type="text" name="firstname">
-								</div>
-							
+					<h2>ประเภทสินค้า</h2>
+					<p>Category</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/carrot.jpg);">
+						<a href="buy-farmer-list.php?value=<?php echo $value1;?>" class="work-grid" style="background-image: url(images/fertilizer.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">แครอท</a></h3>
-							<span>ห่างจากคุณ 1 กม.</span>
+							<h3><a href="buy-farmer-list.php?value=<?php echo $value1;?>">ปุ๋ย</a></h3>
+							<span>fertilizer</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/asparagus.jpg);">
+						<a href="buy-farmer-list.php?value=<?php echo $value2;?>" class="work-grid" style="background-image: url(images/shovel.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">หน่อไม้ฟรั่ง</a></h3>
-							<span>ห่างจากคุณ 1 กม.</span>
+							<h3><a href="buy-farmer-list.php?value=<?php echo $value2;?>">เครื่องมือ</a></h3>
+							<span>Tool</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/cabbage.jpg);">
+						<a href="buy-farmer-other.php" class="work-grid" style="background-image: url(images/other.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">กะหล่ำปลี</a></h3>
-							<span>ห่างจากคุณ 1.2 กม.</span>
+							<h3><a href="buy-farmer-other.php">อื่นๆ</a></h3>
+							<span>other</span>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/Broccoli.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="buylist.html">บล็อคโคลี่</a></h3>
-							<span>ห่างจากคุณ 1.4 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(images/tomato.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">มะเขือเทศ</a></h3>
-							<span>ห่างจากคุณ 1.5 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(images/vegetable.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">ผักรวม</a></h3>
-							<span>ห่างจากคุณ 2 กม.</span>
-						</div>
-					</div>
-				</div>
+				
+				
+				
 			</div>
 		</div>
+	</div>
+	
+	
 	</div>
 	
 	

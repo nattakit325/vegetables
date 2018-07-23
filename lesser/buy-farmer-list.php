@@ -1,4 +1,16 @@
+<?php
+    session_start();
+    include "connect.php";
+    $strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
+	$value=$_GET["value"];
+
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE type='$value' ";
+    $query=mysqli_query($objCon,$sql);
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -133,8 +145,8 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
-						<a href="" data-toggle="modal" data-target="#myModal"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
+                        <li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
+						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
@@ -147,75 +159,47 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 					<h2>สินค้านำเสนอสำหรับคุณ</h2>
-					<p><span>Product for you</a></span></p>
-
-
-								<div class="form-group">
-									<input class="form-control" placeholder="ค้นหาสินค้า" type="text" name="firstname">
-								</div>
-							
+                    <p><span>Product for you</a></span></p>
+                    <form class="form-inline" name="searchform" id="searchform">
+                        <div class="form-group">
+                            <label for="textsearch" >ชื่อสินค้า</label>
+                            <input type="text" name="itemname" id="itemname" class="form-control" placeholder="ข้อความ คำค้นหา!" autocomplete="off">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnSearch">
+                            <span class="glyphicon glyphicon-search"></span>
+                            ค้นหา
+                        </button>
+                    </form>     
 				</div>
-			</div>
+            </div>
+            <div class="row">
+				<div class="col-md-12">
+                    <div class="row">
+                    <div class="row" id="list-data" style="margin-top: 10px;">
+			        </div>
+				</div>
+            </div>
+            <div class="row">
+				<div class="fh5co-heading">
+					<h2>แนะนำ</h2> 
+				</div>
+            </div>
 			<div class="row">
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/carrot.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="buylist.html">แครอท</a></h3>
-							<span>ห่างจากคุณ 1 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/asparagus.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="buylist.html">หน่อไม้ฟรั่ง</a></h3>
-							<span>ห่างจากคุณ 1 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/cabbage.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="buylist.html">กะหล่ำปลี</a></h3>
-							<span>ห่างจากคุณ 1.2 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/Broccoli.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="buylist.html">บล็อคโคลี่</a></h3>
-							<span>ห่างจากคุณ 1.4 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(images/tomato.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">มะเขือเทศ</a></h3>
-							<span>ห่างจากคุณ 1.5 กม.</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(images/vegetable.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">ผักรวม</a></h3>
-							<span>ห่างจากคุณ 2 กม.</span>
-						</div>
-					</div>
+				<div class="col-md-12">
+                    <div class="row">
+                    <?php while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){ ?>
+                        <div class="col-md-4 text-center">
+                            <div class="blog-inner">
+                                <a href="detail-product.php?id=<?php echo $row["id"];?>"><img class="img-responsive" src="myfile/<?php echo $row["picture"];?>" alt="Blog"></a>
+                                <div class="desc">
+                                    <h3><a href="detail-product.php?id=<?php echo $row["id"];?>"><?php echo $row["name"];?></a></h3>
+                                    <p><?php echo $row["detail"];?></p>
+                                    <p><a href="detail-product.php?id=<?php echo $row["id"];?>" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
+                                </div>
+                            </div>
+                        </div>
+				    <?php } ?>
+			        </div>
 				</div>
 			</div>
 		</div>
@@ -231,8 +215,36 @@
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
-
+    <script src="js/main.js"></script>
+    <!-- Search -->
+    <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#btnSearch").click(function () {
+                    $.ajax({
+                        url: "searchlist.php?value=<?php echo $value;?>",
+                        type: "post",
+                        data: {itemname: $("#itemname").val()},
+                        beforeSend: function () {
+                            $(".loading").show();
+                        },
+                        complete: function () {
+                            $(".loading").hide();
+                        },
+                        success: function (data) {
+                            $("#list-data").html(data);
+                        }
+                    });
+                });
+                $("#searchform").on("keyup keypress",function(e){
+                   var code = e.keycode || e.which;
+                   if(code==13){
+                       $("#btnSearch").click();
+                       return false;
+                   }
+                });
+            });
+        </script>
 	</body>
 </html>
 
