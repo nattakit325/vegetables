@@ -1,8 +1,8 @@
 <?php
-    $server="localhost";
+    $server="localhost:8080";
     $user="root";
-    $password="";
-    $db="nattakit_db";
+    $password="167349258123";
+    $db="smartfarmer";
 
     $objCon = mysqli_connect($server,$user,$password,$db);
 

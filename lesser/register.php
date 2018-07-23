@@ -1,4 +1,14 @@
+<?php
+	include "connect.php";
 
+	$strSQL = "SELECT market FROM market ";
+	$result = mysqli_query($objCon,$strSQL);
+	while($row = $result->fetch_assoc()) {
+        echo "";
+    }
+
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
