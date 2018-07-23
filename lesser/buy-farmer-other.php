@@ -6,7 +6,7 @@
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE NOT (type='เครื่องมือ' OR type='ปุ๋ย' OR type='ผัก' OR type='ผลไม้') ";
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE NOT (type='เครื่องมือ' OR type='ปุ๋ย' OR type='ราก' OR type='ลำต้น' OR type='ใบ' OR type='ดอก'  OR type='ผล') ";
     $query=mysqli_query($objCon,$sql);
 
 ?>
@@ -221,7 +221,7 @@
             $(function () {
                 $("#btnSearch").click(function () {
                     $.ajax({
-                        url: "search-other.php",
+                        url: "search-farmer-other.php",
                         type: "post",
                         data: {itemname: $("#itemname").val()},
                         beforeSend: function () {

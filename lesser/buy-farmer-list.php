@@ -1,12 +1,13 @@
 <?php
-	session_start();
-	include "connect.php";
-
-	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
+    session_start();
+    include "connect.php";
+    $strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE type='ปุ๋ย' ";
+	$value=$_GET["value"];
+
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE type='$value' ";
     $query=mysqli_query($objCon,$sql);
 
 ?>
@@ -221,7 +222,7 @@
             $(function () {
                 $("#btnSearch").click(function () {
                     $.ajax({
-                        url: "search-fert.php",
+                        url: "searchlist.php?value=<?php echo $value;?>",
                         type: "post",
                         data: {itemname: $("#itemname").val()},
                         beforeSend: function () {

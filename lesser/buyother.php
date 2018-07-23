@@ -1,12 +1,7 @@
 <?php
-	session_start();
 	include "connect.php";
 
-	$strSQL = "SELECT * FROM login WHERE username = '".$_SESSION['username']."' ";
-	$objQuery = mysqli_query($objCon,$strSQL);
-	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE type='เครื่องมือ' ";
+	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE NOT (type='เครื่องมือ' OR type='ปุ๋ย' OR type='ราก' OR type='ลำต้น' OR type='ใบ' OR type='ดอก'  OR type='ผล') ";
     $query=mysqli_query($objCon,$sql);
 
 ?>
@@ -144,8 +139,8 @@
 				<h1><i class="sl-icon-energy"></i><a href="index.html">Lesserr</a></h1>
 				<nav role="navigation">
 					<ul>
-                        <li><a href=""><?php echo $_SESSION["username"]; ?></a></li>
-						<a href="logout.php"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
+                        <li><a href="" data-toggle="modal" data-target="#myModal">เข้าสู่ระบบ</a></li>
+						<a href="" data-toggle="modal" data-target="#myModal"><img class="circle" src="images/profile.png" width="10%" height="12%" /></a>
 					</ul>
 				</nav>
 			</div>
@@ -221,7 +216,7 @@
             $(function () {
                 $("#btnSearch").click(function () {
                     $.ajax({
-                        url: "search-tool.php",
+                        url: "searchother.php",
                         type: "post",
                         data: {itemname: $("#itemname").val()},
                         beforeSend: function () {

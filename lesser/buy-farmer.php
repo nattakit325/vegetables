@@ -6,12 +6,9 @@
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
-	$SQL = "SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name ";
-	$Query = mysqli_query($objCon,$SQL);
-
-	$sql="SELECT * FROM selllist RIGHT JOIN product ON selllist.productname = product.name WHERE username = '".$_SESSION['username']."' ";
-    $query=mysqli_query($objCon,$sql);
-    $objResult1 = mysqli_fetch_array($query,MYSQLI_ASSOC);
+	$value1='ปุ๋ย';
+	$value2='เครื่องมือ';
+	$value3;
 
 ?>
 <!DOCTYPE html>
@@ -165,30 +162,30 @@
 			<div class="row">
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buy-fert.php" class="work-grid" style="background-image: url(images/fertilizer.jpg);">
+						<a href="buy-farmer-list.php?value=<?php echo $value1;?>" class="work-grid" style="background-image: url(images/fertilizer.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buy-fert.php">ปุ๋ย</a></h3>
+							<h3><a href="buy-farmer-list.php?value=<?php echo $value1;?>">ปุ๋ย</a></h3>
 							<span>fertilizer</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buy-tool.php" class="work-grid" style="background-image: url(images/shovel.jpg);">
+						<a href="buy-farmer-list.php?value=<?php echo $value2;?>" class="work-grid" style="background-image: url(images/shovel.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buy-tool.php">เครื่องมือ</a></h3>
+							<h3><a href="buy-farmer-list.php?value=<?php echo $value2;?>">เครื่องมือ</a></h3>
 							<span>Tool</span>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buy-other.php" class="work-grid" style="background-image: url(images/other.jpg);">
+						<a href="buy-farmer-other.php" class="work-grid" style="background-image: url(images/other.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buy-other.php">อื่นๆ</a></h3>
+							<h3><a href="buy-farmer-other.php">อื่นๆ</a></h3>
 							<span>other</span>
 						</div>
 					</div>
