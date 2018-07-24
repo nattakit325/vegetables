@@ -287,9 +287,9 @@ google.maps.event.addListener(map, 'click', function (event) {
 				<div class="form-group">
 					<select class="form-control" name="status" id="place">
 						<option selected>เลือกตลาด</option>
-						<option value="สถานที่ 1">สถานที่ 1 </option>
-						<option value="สถานที่ 2">สถานที่ 2</option>
-						<option value="สถานที่ 3">สถานที่ 3</option>
+						<?php while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){ ?>
+						<option value="<?php echo $row["market"] ?>"><?php echo $row["market"] ?> </option>
+						<?php } ?>
 					</select>
 				</div>
 			</div>
