@@ -188,9 +188,9 @@
                             <div class="blog-inner">
                                 <a href="detail-product.php?id=<?php echo $row["id"];?>"><img class="img-responsive" src="myfile/<?php echo $row["picture"];?>" alt="Blog"></a>
                                 <div class="desc">
-                                    <h3><a href="detail-product.php?id=<?php echo $row["id"];?>"><?php echo $row["name"];?></a></h3>
+                                    <h3><a href="detail-list.php?id=<?php echo $row["id"];?>"><?php echo $row["name"];?></a></h3>
                                     <p><?php echo $row["detail"];?></p>
-                                    <p><a href="detail-product.php?id=<?php echo $row["id"];?>" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
+                                    <p><a href="detail-list.php?id=<?php echo $row["id"];?>" class="btn btn-primary btn-outline with-arrow">Read More<i class="icon-arrow-right"></i></a></p>
                                 </div>
                             </div>
                         </div>

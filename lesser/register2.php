@@ -1,4 +1,12 @@
+<?php
 
+	include "connect.php";
+
+	$sql="SELECT * FROM market WHERE 1 ";
+	$query=mysqli_query($objCon,$sql);
+	$username = $user;
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -64,7 +72,7 @@
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	var margetarr = [];
+	var marketarr = [];
 $(document).ready(function(){
     $("#place").change(function(){
 	var place1 = document.getElementById("place");
@@ -72,8 +80,8 @@ $(document).ready(function(){
     var option = document.createElement("option");
     option.text = place1.value;
     show.add(option);
-	margetarr.push(place1.value);
-	console.log(margetarr);
+	marketarr.push(place1.value);
+	console.log(marketarr);
     //$("p").append("<br>"+place1.value+" X ");
 	$("#place option:selected").remove();
     });
@@ -95,23 +103,44 @@ function myFunction() {
     }
     return this;
 	};
-	margetarr.remove(x.value);
+	marketarr.remove(x.value);
 	console.log(x.value);
-	console.log(margetarr);
+	console.log(marketarr);
 	x.remove(x.selectedIndex);
 	
 }
-
+var la = [];
+var long = [];
+var loname = [];
 function saveLatLng() {
 
 var lat = $("#lat").val();
 var lng = $("#lng").val();
 var location_name = $("#location_name").val();
+la.push(lat);
+long.push(lng);
+loname.push(location_name);
 var show = document.getElementById("show");
     var option = document.createElement("option");
     option.text = location_name;
 	show.add(option);
-	close();
+	console.log(la);
+	console.log(long);
+	console.log(loname);
+}
+function saveMarket() {
+
+
+$.ajax({
+	method: "POST",
+	url: "save-market.php",
+	data: { marketarr: marketarr.serializeArray(), la: la.serializeArray(), long: long.serializeArray(), loname:loname.serializeArray()}
+}).done(function (text) {
+
+	alert(text);
+
+});
+
 }
 
 function setupMap() {
@@ -127,7 +156,6 @@ var marker = new google.maps.Marker({
 	position: new google.maps.LatLng(15.000682, 103.728207),
 	draggable: true
 });
-
 
 var infowindow = new google.maps.InfoWindow;
 if (navigator.geolocation) {
@@ -225,9 +253,9 @@ google.maps.event.addListener(map, 'click', function (event) {
 				<div class="form-group">
 					<select class="form-control" name="status" id="place">
 						<option selected>เลือกตลาด</option>
-						<option value="สถานที่ 1">สถานที่ 1 </option>
-						<option value="สถานที่ 2">สถานที่ 2</option>
-						<option value="สถานที่ 3">สถานที่ 3</option>
+						<?php while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){ ?>
+						<option value="<?php echo $row["market"] ?>"><?php echo $row["market"] ?></option>
+						<?php } ?>
 					</select>
 				</div>
 			</div>
@@ -245,7 +273,7 @@ google.maps.event.addListener(map, 'click', function (event) {
               <div class="form-group">
                 <br>
                 <center>
-                <input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="submit">
+                <input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="button" onclick="saveMarket()">
                 </center>
               </div>
 			</div>

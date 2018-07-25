@@ -1,10 +1,4 @@
-<?php
-	include "connect.php";
 
-	$sql="SELECT * FROM gmarket WHERE 1 ";
-    $query=mysqli_query($objCon,$sql);
-
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -64,114 +58,6 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
-
-
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2G4KpiHxEwq-geWsql29f4CL7ks4rPP0&callback=setupMap">
-	</script>
-	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	var margetarr = [];
-$(document).ready(function(){
-    $("#place").change(function(){
-	var place1 = document.getElementById("place");
-    var show = document.getElementById("show");
-    var option = document.createElement("option");
-    option.text = place1.value;
-    show.add(option);
-	margetarr.push(place1.value);
-	console.log(margetarr);
-    //$("p").append("<br>"+place1.value+" X ");
-	$("#place option:selected").remove();
-    });
-
-});
-function myFunction() {
-    var x = document.getElementById("show");
-	var place = document.getElementById("place");
-    var option = document.createElement("option");
-    option.text = x.value;
-    place.add(option);
-	Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
-	};
-	margetarr.remove(x.value);
-	console.log(x.value);
-	console.log(margetarr);
-	x.remove(x.selectedIndex);
-
-}
-
-function saveLatLng() {
-
-var lat = $("#lat").val();
-var lng = $("#lng").val();
-var location_name = $("#location_name").val();
-var show = document.getElementById("show");
-    var option = document.createElement("option");
-    option.text = location_name;
-	show.add(option);
-	close();
-}
-
-function setupMap() {
-var myOptions = {
-	zoom: 13,
-	center: new google.maps.LatLng(16.024695711685314, 103.13690185546875),
-	mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-
-var marker = new google.maps.Marker({
-	map: map,
-	position: new google.maps.LatLng(15.000682, 103.728207),
-	draggable: true
-});
-
-
-var infowindow = new google.maps.InfoWindow;
-if (navigator.geolocation) {
-	navigator.geolocation.getCurrentPosition(function (position) {
-		var pos = {
-			lat: position.coords.latitude,
-			lng: position.coords.longitude
-		};
-		infowindow.setPosition(pos);
-		infowindow.setContent('คุณอยู่ตรงนี้');
-		infowindow.open(map);
-		map.setCenter(pos);
-	});
-
-}
-
-google.maps.event.addListener(map, 'click', function (event) {
-
-	var html = '';
-	html += 'lat : <input type="text" id="lat" value="' + event.latLng.lat() + '" /><br/>';
-	html += 'lng : <input type="text" id="lng" value="' + event.latLng.lng() + '" /><br/>';
-	html += 'location name : <input type="text" id="location_name" value="" /><br/>';
-	html += '<input type="button" value="Save" onclick="saveLatLng()" />';
-
-	infowindow.open(map, marker);
-	infowindow.setContent(html);
-	infowindow.setPosition(event.latLng);
-	marker.setPosition(event.latLng);
-
-});
-
-
-}
-</script>
-
-
-
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -211,32 +97,44 @@ google.maps.event.addListener(map, 'click', function (event) {
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 					<h2>ลงทะเบียนสมาชิกใหม่</h2>
 					<p><span>New Member Registration</span></p>
-					<p><span><a href="connect.php">Test connect</a></span></p>
 				</div>
 			</div>
 			<div class="row">
 
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<div class="row">
-						<form action="save-register.php" method="post">
+						<form action="save-register.php" method="post" enctype="multipart/form-data">
+<div class="col-md-4 text-center">
+
+					<div class="work-inner">
+						<a  class="work-grid" style="background-image: url(images/profile.png);">
+						</a>
+						<div class="desc">
+							<input class="form-control" placeholder="Picture" type="file" name="filUpload">
+						</div>
+					</div>
+				</div>
+
 							<div class="col-md-6">
+
+
 								<div class="form-group">
-									<input class="form-control" placeholder="First name" type="text" name="firstname">
+									<input class="form-control" placeholder="ชื่อจริง" type="text" name="firstname">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" placeholder="Last name" type="text" name="lastname">
+									<input class="form-control" placeholder="นามสกุล" type="text" name="lastname">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" placeholder="Username" type="text" name="username">
+									<input class="form-control" placeholder="ชื่อผู้ใช้งาน" type="text" name="username">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" placeholder="Password" type="password" name="password">
+									<input class="form-control" placeholder="รหัสผ่าน" type="password" name="password">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -259,54 +157,44 @@ google.maps.event.addListener(map, 'click', function (event) {
 			</div>
 		</div>
 	</div>
-	<div class="row">
+<div class="row">
         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-          <h2>กำหนดสถานที่ขายสินค้าของคุณ</h2>
-          <p><span>Set location where your products sold</span></p>
-                        <div class="col-md-6">
-							<div class="form-group">
-								<select class="form-control" name="status"  id="show" size="0">
+          <h2>ช่องทางการติดต่อของคุณ</h2>
+          <p ip="pp"><span>Your contact</span></p>
 
-								</select>
-							</div>
-                        </div>
-                        <div class="col-md-6">
-							<div class="form-group">
-								<button type="button" class="btn btn-info" data-toggle="modal" onclick="myFunction()">ลบที่คุณเลือก</button>
-							</div>
-                        </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-            <div class="col-md-6">
-				<div class="form-group">
-					<select class="form-control" name="status" id="place">
-						<option selected>เลือกตลาด</option>
-						<?php while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)){ ?>
-						<option value="สถานที่ 1"><?php echo $row["market"] ?> </option>
-						<?php } ?>
-						<option value="สถานที่ 2">สถานที่ 2</option>
-						<option value="สถานที่ 3">สถานที่ 3</option>
-					</select>
-				</div>
-			</div>
-            <div class="col-md-6">
-				<div class="form-group">
-					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่ของคุณ</button>
-				</div>
-			</div>
-        </div>
-    </div>
-</div>
+          <div class="col-md-6">
 
+
+								<div class="form-group">
+									<input class="form-control" placeholder="ที่อยู่" type="text" name="address">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="เบอร์โทรศัพท์" type="text" name="tel">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="Facebook" type="text" name="facebook">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" placeholder="Line" type="text" name="line">
+								</div>
+							</div>
+
+
+        </div>
+      </div>
 
 
   			<div class="col-md-12">
               <div class="form-group">
                 <br>
                 <center>
-                <input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="submit">
+                <input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="submit" name="submit">
                 </center>
               </div>
 			</div>
