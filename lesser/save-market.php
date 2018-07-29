@@ -1,18 +1,32 @@
 <?php
-
+    header("Content-Type: application/json; charset=UTF-8");
      include "connect.php";
-     $loname = $_POST["loname"];
-     $lati = $_POST["la"];
-     $longti = _POST["long"];
-    // $loname = json_decode(stripslashes($_POST["loname"]));
-    // $lati =  json_decode(stripslashes($_POST["la"]));
-    // $longti =  json_decode(stripslashes($_POST["long"]));
-    
+
+     $loname= $_POST['loname'];
+     $user= $_POST['user'];
+     $marketarr= $_POST['marketarr'];
+     $la= $_POST['la'];
+     $longti= $_POST['long'];
+     $i = 0;
+     $gmarket = array();
      foreach($loname as $value ){
         $strSQL1 = "INSERT INTO market";
-        $strSQL1 .="(market,latitude,longitude,type) VALUES ('$loname','$lati','$longti','2')";
+        $strSQL1 .="(market,latitude,longitude,type) VALUES ('$loname[$i]','$la[$i]','$longti[$i]','2')";
         $objQuery = mysqli_query($objCon,$strSQL1);
-    }
-   echo "done";
 
+        $strSQL2 = " SELECT MAX(id) FROM market ";
+        $objQuery = mysqli_query($objCon,$strSQL2);
+        array_push($gmarket, $objQuery);
+
+        $strSQL3 = "INSERT INTO gmarket";
+        $strSQL3 .="(username,marketid) VALUES ('$user','$gmarket[$i]')";
+         $objQuery = mysqli_query($objCon,$strSQL3);
+        print ($gmarket[$i]);
+        print ($user);
+       
+        $i = $i + 1 ;
+    }
+
+    
+   echo "done";
 ?>

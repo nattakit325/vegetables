@@ -2,9 +2,9 @@
 
 	include "connect.php";
 
-	$sql="SELECT * FROM market WHERE 1 ";
+	$sql="SELECT * FROM market WHERE type = 1 ";
 	$query=mysqli_query($objCon,$sql);
-	$username = $user;
+	$username = $_GET['user'];
 
 ?>
 <!DOCTYPE html>
@@ -129,17 +129,20 @@ var show = document.getElementById("show");
 	console.log(loname);
 }
 function saveMarket() {
-
+	var user = "<?php echo $username; ?>";
 
 $.ajax({
 	method: "POST",
 	url: "save-market.php",
-	data: { marketarr: marketarr.serializeArray(), la: la.serializeArray(), long: long.serializeArray(), loname:loname.serializeArray()}
-}).done(function (text) {
+	dataType:"json",
+	data: { marketarr: marketarr, la: la, long: long, loname:loname ,  user:user },
+	success: function(data){
+				 alert(data);
+                //the controller function count_votes returns an integer.
+                //echo that with the fade in here.
 
-	alert(text);
-
-});
+                }
+	});
 
 }
 
@@ -273,7 +276,7 @@ google.maps.event.addListener(map, 'click', function (event) {
               <div class="form-group">
                 <br>
                 <center>
-                <a href="suscess.php"><input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="button"></a>
+                <input value="ยืนยันการสมัครสมาชิก" class="btn btn-primary" type="button" onclick="saveMarket()">
                 </center>
               </div>
 			</div>
