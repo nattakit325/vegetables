@@ -2,9 +2,9 @@
 	session_start();
 	include "connect.php";
 
-
+	$pass = md5($_POST['pwd']);
 	$strSQL = "SELECT * FROM login WHERE username = '".mysqli_real_escape_string($objCon,$_POST['usr'])."' 
-	and password = '".mysqli_real_escape_string($objCon,$_POST['pwd'])."'";
+	and password = '".mysqli_real_escape_string($objCon,$pass)."'";
 	$objQuery = mysqli_query($objCon,$strSQL);
 	$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 	if(!$objResult)

@@ -21,9 +21,9 @@ echo "<br>";
 	if(move_uploaded_file($_FILES["filUpload"]["tmp_name"],"myfile/".$_FILES["filUpload"]["name"]))
 	{
 		echo "Copy/Upload Complete<br>";
-
+        $pass = md5($_POST["password"]);
         $strSQL1 = "INSERT INTO login ";
-        $strSQL1 .="(username,password,status) VALUES ('".$_POST["username"]."','".$_POST["password"]."','".$_POST["status"]."')";
+        $strSQL1 .="(username,password,status) VALUES ('".$_POST["username"]."','$pass','".$_POST["status"]."')";
         $objQuery = mysqli_query($objCon,$strSQL1);
         
         $strSQL2 = "INSERT INTO profile ";

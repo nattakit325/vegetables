@@ -8,19 +8,19 @@
      $la= $_POST['la'];
      $longti= $_POST['long'];
      $i = 0;
-     $gmarket = array();
      foreach($loname as $value ){
         $strSQL1 = "INSERT INTO market";
         $strSQL1 .="(market,latitude,longitude,type) VALUES ('$loname[$i]','$la[$i]','$longti[$i]','2')";
-        $objQuery = mysqli_query($objCon,$strSQL1);
+        $objQuery1 = mysqli_query($objCon,$strSQL1);
 
         $strSQL2 = " SELECT MAX(id) FROM market ";
-        $objQuery = mysqli_query($objCon,$strSQL2);
-        array_push($gmarket, $objQuery);
+        $objQuery2 = mysqli_query($objCon,$strSQL2);
+        $objResult = mysqli_fetch_array($objQuery2,MYSQLI_ASSOC);
+        $marketid = $objResult["MAX(id)"];
 
         $strSQL3 = "INSERT INTO gmarket";
-        $strSQL3 .="(username,marketid) VALUES ('$user','$gmarket[$i]')";
-         $objQuery = mysqli_query($objCon,$strSQL3);
+        $strSQL3 .="(username,marketid) VALUES ('$user','$marketid')";
+        $objQuery3 = mysqli_query($objCon,$strSQL3);
         print ($gmarket[$i]);
         print ($user);
        

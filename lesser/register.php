@@ -57,7 +57,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -66,6 +66,19 @@
 	<![endif]-->
 
 	</head>
+ 
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#blah').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}	
+</script>
 	<body>
 
 	<div class="modal fade" id="myModal" role="dialog">
@@ -104,13 +117,13 @@
 				<div class="col-md-10 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<div class="row">
 						<form action="save-register.php" method="post" enctype="multipart/form-data">
-<div class="col-md-4 text-center">
+			<div class="col-md-4 text-center">
 
 					<div class="work-inner">
-						<a  class="work-grid" style="background-image: url(images/profile.png);">
+						<img src="images/profile.png"  id="blah" class="work-grid">
 						</a>
 						<div class="desc">
-							<input class="form-control" placeholder="Picture" type="file" name="filUpload">
+							<input class="form-control" placeholder="Picture" type="file" name="filUpload" Oonchange="readURL(this);">
 						</div>
 					</div>
 				</div>

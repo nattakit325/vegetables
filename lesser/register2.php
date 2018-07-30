@@ -137,7 +137,7 @@ $.ajax({
 	dataType:"json",
 	data: { marketarr: marketarr, la: la, long: long, loname:loname ,  user:user },
 	success: function(data){
-				 alert(data);
+				window.location.replace('success.php');
                 //the controller function count_votes returns an integer.
                 //echo that with the fade in here.
 
