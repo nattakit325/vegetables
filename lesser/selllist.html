@@ -69,6 +69,22 @@
 	<![endif]-->
 
 	</head>
+
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#select").click(function(){
+          $("#select").hide();
+          $('.foo').hide();
+          $('.ch').show();
+    });
+
+});
+</script>
+
 	<body>
 
 
@@ -88,6 +104,8 @@
     border-radius: 50%; /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* เงาของรูป */
 }
+
+
 </style>
 
 
@@ -150,64 +168,77 @@
 
 
 								<div class="form-group">
-									<input class="form-control" placeholder="ค้นหาสินค้า" type="text" name="firstname">
-								</div>
+									<input class="form-control" placeholder="ค้นหาสินค้า" type="text" name="firstname"><br>
+									<button type="button" class="btn btn-warning" id="select"><i class="fas fa-hand-pointer"></i></i>&nbsp;&nbsp;เลือกสินค้า
+										<button type="button" class="btn btn-danger" class="foo"><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;ลบทั้งหมด
+											<button type="button" class="btn btn-danger" style="display:none" class="ch"><i class="fas fa-trash-alt"></i></i>&nbsp;&nbsp;ลบที่เลือก
+									</div>
 							
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/carrot.jpg);">
+						<a class="work-grid" style="background-image: url(images/carrot.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">แครอท</a></h3>
+							<h3><a >แครอท</a></h3>
+							<div class="foo">
 							<span> <button type="button" class="btn btn-primary" ><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;แก้ไข</span>
 								<span> <button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;ลบ</span>
+								</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/asparagus.jpg);">
+						<a  class="work-grid" style="background-image: url(images/asparagus.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">หน่อไม้ฟรั่ง</a></h3>
+							<h3><a>หน่อไม้ฟรั่ง</a></h3>
+							<div class="foo">
 							<span> <button type="button" class="btn btn-primary" ><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;แก้ไข</span>
 								<span> <button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;ลบ</span>
+								</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/cabbage.jpg);">
+						<a class="work-grid" style="background-image: url(images/cabbage.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">กะหล่ำปลี</a></h3>
+							<h3><a >กะหล่ำปลี</a></h3>
+							<div class="foo">
 							<span> <button type="button" class="btn btn-primary" ><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;แก้ไข</span>
 								<span> <button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;ลบ</span>
+								</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="buylist.html" class="work-grid" style="background-image: url(images/Broccoli.jpg);">
+						<a  class="work-grid" style="background-image: url(images/Broccoli.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="buylist.html">บล็อคโคลี่</a></h3>
+							<h3><a >บล็อคโคลี่</a></h3>
+							<div class="foo">
 							<span> <button type="button" class="btn btn-primary" ><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;แก้ไข</span>
 								<span> <button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;ลบ</span>
+								</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(images/tomato.jpg);">
+						<a class="work-grid" style="background-image: url(images/tomato.jpg);">
 						</a>
 						<div class="desc">
-							<h3><a href="#">มะเขือเทศ</a></h3>
+							<h3><a >มะเขือเทศ</a></h3>
+							<div class="foo">
 							<span> <button type="button" class="btn btn-primary" ><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;แก้ไข</span>
 								<span> <button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i>&nbsp;&nbsp;ลบ</span>
+								</div>
 						</div>
 					</div>
 				</div>
